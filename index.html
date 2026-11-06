@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Insane.Web — Code, CPUs, Kali & Security</title>
+<meta name="description" content="Insane.Web: deep guides to coding, CPU architecture, Kali Linux, cybersecurity and networking, with cheat sheets and a searchable knowledge base.">
+<meta property="og:title" content="Insane.Web">
+<meta property="og:description" content="Master the machine. Secure the system.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{color-scheme:dark;--bg:#05080b;--bg2:#0a1015;--card:#0d141a;--bd:#18232c;--fg:#e6eef2;--mut:#8196a3;--ac:#19f0a0;--ac2:#22c4ff;--sans:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:84px;height:auto}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+#rain{position:fixed;inset:0;width:100%;height:100%;z-index:0;opacity:.1;pointer-events:none}
+.glow{position:fixed;width:620px;height:620px;border-radius:50%;filter:blur(120px);opacity:.16;z-index:0;pointer-events:none;animation:drift 16s ease-in-out infinite alternate}
+.g1{background:var(--ac);top:-200px;left:-160px}.g2{background:var(--ac2);bottom:-240px;right:-180px;animation-delay:-8s}
+@keyframes drift{to{transform:translate(90px,70px) scale(1.15)}}
+header,main,footer{position:relative;z-index:1}
+.wrap{max-width:1120px;margin:auto;padding:0 22px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(5,8,11,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--bd)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;color:var(--fg);text-decoration:none;letter-spacing:-.3px}
+.mark{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,var(--ac),var(--ac2));display:grid;place-items:center;color:#021;font:700 14px var(--mono)}
+.logo em{font-style:normal;color:var(--ac)}
+.links{display:flex;gap:26px}.links a{color:var(--mut);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}.links a:hover{color:var(--fg)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:10px;font:600 14px var(--sans);text-decoration:none;border:1px solid var(--bd);color:var(--fg);background:var(--card);transition:transform .2s,box-shadow .2s,border-color .2s;cursor:pointer}
+.btn:hover{transform:translateY(-2px);border-color:var(--ac)}
+.btn.p{background:linear-gradient(135deg,var(--ac),var(--ac2));color:#031;border:0;box-shadow:0 8px 28px -8px rgba(25,240,160,.55)}
+.btn.p:hover{box-shadow:0 12px 34px -6px rgba(25,240,160,.7)}
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;padding:84px 0 56px}
+.badge{display:inline-flex;gap:8px;align-items:center;padding:6px 14px;border:1px solid var(--bd);border-radius:99px;background:var(--card);color:var(--mut);font-size:13px;margin-bottom:22px}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--ac);box-shadow:0 0 10px var(--ac);animation:pulse 1.8s infinite}@keyframes pulse{50%{opacity:.3}}
+h1{font-size:clamp(38px,6vw,64px);line-height:1.05;letter-spacing:-2px;margin:0 0 20px;font-weight:800}
+.gt{background:linear-gradient(100deg,var(--ac),var(--ac2),var(--ac));background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 6s linear infinite}@keyframes shine{to{background-position:200% center}}
+.lead{color:var(--mut);font-size:18px;max-width:520px;margin:0 0 30px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.term{background:#070c10;border:1px solid var(--bd);border-radius:14px;overflow:hidden;box-shadow:0 30px 80px -30px rgba(25,240,160,.25);animation:float 6s ease-in-out infinite}@keyframes float{50%{transform:translateY(-10px)}}
+.bar{display:flex;gap:7px;align-items:center;padding:12px 14px;border-bottom:1px solid var(--bd);background:var(--bg2)}
+.bar i{width:11px;height:11px;border-radius:50%;background:#2a3640}.bar i:nth-child(1){background:#ff5f57}.bar i:nth-child(2){background:#febc2e}.bar i:nth-child(3){background:#28c840}
+.bar span{margin-left:auto;color:var(--mut);font:12px var(--mono)}
+.term pre,.code pre{margin:0;padding:18px;font:13.5px/1.75 var(--mono);color:#b8c9d2;overflow-x:auto;min-height:190px;white-space:pre}
+.pr{color:var(--ac)}.cm{color:#5b7280}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--bd);border-radius:16px;background:var(--card);overflow:hidden}
+.stat{padding:24px;border-right:1px solid var(--bd)}.stat:last-child{border:0}
+.stat b{display:block;font-size:26px;letter-spacing:-.5px}.stat span{color:var(--mut);font-size:14px}
+section{padding:92px 0 0}
+.eyebrow{color:var(--ac);font:500 13px var(--mono);letter-spacing:2px;text-transform:uppercase}
+h2{font-size:clamp(28px,4vw,42px);letter-spacing:-1.2px;line-height:1.12;margin:10px 0 14px}
+.sub{color:var(--mut);max-width:620px;margin:0 0 36px;font-size:17px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.card{background:linear-gradient(180deg,var(--card),var(--bg2));border:1px solid var(--bd);border-radius:16px;padding:24px;transition:transform .3s,border-color .3s,box-shadow .3s}
+.card:hover{transform:translateY(-6px);border-color:rgba(25,240,160,.5);box-shadow:0 18px 50px -20px rgba(25,240,160,.35)}
+.ic{width:42px;height:42px;border-radius:11px;display:grid;place-items:center;margin-bottom:16px;background:rgba(25,240,160,.1);border:1px solid rgba(25,240,160,.25);color:var(--ac);font:600 15px var(--mono)}
+.card h3{margin:0 0 8px;font-size:18px;letter-spacing:-.3px}.card p{margin:0;color:var(--mut);font-size:15px}
+.pipe{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:22px}
+.st{padding:18px 10px;text-align:center;border:1px solid var(--bd);border-radius:12px;background:var(--card);font:500 13px var(--mono);animation:lit 5s infinite}
+.st small{display:block;color:var(--mut);font-size:11px;margin-top:4px}
+.st:nth-child(2){animation-delay:1s}.st:nth-child(3){animation-delay:2s}.st:nth-child(4){animation-delay:3s}.st:nth-child(5){animation-delay:4s}
+@keyframes lit{0%,18%{border-color:var(--ac);box-shadow:0 0 22px rgba(25,240,160,.4);color:var(--ac);transform:translateY(-4px)}22%,100%{border-color:var(--bd);box-shadow:none;color:var(--fg);transform:none}}
+.tw{overflow-x:auto;border:1px solid var(--bd);border-radius:16px;margin-top:22px;background:var(--card)}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:15px}th,td{padding:14px 20px;text-align:left;border-bottom:1px solid var(--bd)}tr:last-child td{border:0}th{color:var(--ac);font:500 12px var(--mono);letter-spacing:1px;text-transform:uppercase}td:first-child{color:var(--mut)}
+.tabs{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.tab{padding:8px 18px;border-radius:99px;border:1px solid var(--bd);background:var(--card);color:var(--mut);font:500 14px var(--sans);cursor:pointer;transition:all .2s}
+.tab:hover{color:var(--fg)}.tab.on{background:rgba(25,240,160,.12);border-color:var(--ac);color:var(--ac)}
+.code{background:#070c10;border:1px solid var(--bd);border-radius:14px;overflow:hidden}
+.note{margin-top:14px;padding:14px 18px;border:1px solid var(--bd);border-left:3px solid var(--ac);border-radius:10px;background:var(--card);color:var(--mut);font-size:15px}
+.tl{display:grid;gap:12px}
+.step{display:flex;align-items:center;gap:16px;padding:18px 22px;border:1px solid var(--bd);border-radius:14px;background:var(--card);cursor:pointer;transition:all .25s;text-align:left;color:var(--fg);font:500 16px var(--sans);width:100%}
+.step:hover{border-color:rgba(25,240,160,.5);transform:translateX(6px)}
+.step .n{width:34px;height:34px;border-radius:50%;border:1px solid var(--bd);display:grid;place-items:center;color:var(--mut);font:500 13px var(--mono);flex:none;transition:all .25s}
+.step.on{border-color:var(--ac)}.step.on .n{background:var(--ac);color:#031;border-color:var(--ac)}
+.step small{display:block;color:var(--mut);font-weight:400;font-size:14px}
+.final{margin-top:92px;text-align:center;padding:64px 24px;border:1px solid var(--bd);border-radius:24px;background:radial-gradient(600px 220px at 50% 0,rgba(25,240,160,.14),transparent),var(--card)}
+.final h2{margin-top:0}.final p{color:var(--mut);margin:0 auto 26px;max-width:480px}
+footer{margin-top:80px;border-top:1px solid var(--bd);padding:40px 0 48px;color:var(--mut);font-size:14px}
+.fc{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}.fc a{color:var(--mut);text-decoration:none;margin-right:20px}.fc a:hover{color:var(--ac)}
+.rv{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}.rv.in{opacity:1;transform:none}
+@media(max-width:860px){.hero{grid-template-columns:1fr;padding-top:56px}.links{display:none}.stats{grid-template-columns:repeat(2,1fr)}.stat:nth-child(2){border-right:0}.stat:nth-child(-n+2){border-bottom:1px solid var(--bd)}.pipe{grid-template-columns:repeat(2,1fr)}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+.srch{width:100%;padding:15px 20px;border-radius:12px;border:1px solid var(--bd);background:var(--card);color:var(--fg);font:16px var(--sans);margin-bottom:14px;outline:0;transition:all .2s}.srch:focus{border-color:var(--ac);box-shadow:0 0 0 3px rgba(25,240,160,.15)}
+.tag{display:inline-block;font:500 11px var(--mono);letter-spacing:1.5px;text-transform:uppercase;color:var(--ac2);margin-bottom:8px}
+.step small{display:block;margin-top:2px}
+details{border:1px solid var(--bd);border-radius:14px;background:var(--card);padding:18px 22px;margin-bottom:12px;transition:border-color .2s}details[open],details:hover{border-color:rgba(25,240,160,.5)}summary{cursor:pointer;font-weight:600;list-style:none}summary::-webkit-details-marker{display:none}summary::after{content:"+";float:right;color:var(--ac);font:500 20px var(--mono)}details[open] summary::after{content:"−"}details p{color:var(--mut);margin:12px 0 0}
+code{font:13px var(--mono);color:var(--ac);background:rgba(25,240,160,.08);padding:3px 8px;border-radius:6px;white-space:nowrap}
+</style>
+</head>
+<body>
+<canvas id="rain"></canvas><div class="glow g1"></div><div class="glow g2"></div>
+<header><div class="wrap nav">
+<a class="logo" href="#top"><span class="mark">&gt;_</span>Insane<em>.Web</em></a>
+<nav class="links"><a href="#cpu">CPU Architecture</a><a href="#code">Coding</a><a href="#kali">Kali Linux</a><a href="#sec">Security</a><a href="#net">Networking</a><a href="#cmd">Commands</a><a href="#kb">Knowledge Base</a><a href="#path">Roadmap</a></nav>
+<a class="btn p" href="#path">Start learning</a>
+</div></header>
+<main id="top"><div class="wrap">
+<div class="hero">
+<div>
+<div class="badge"><span class="dot"></span>Hardware to software to security</div>
+<h1>Master the machine.<br><span class="gt">Secure the system.</span></h1>
+<p class="lead">Insane.Web is a deep technical hub for coding, CPU architecture, Kali Linux and cybersecurity, built for people who want to understand how things really work.</p>
+<div class="cta"><a class="btn p" href="#cpu">Explore topics →</a><a class="btn" href="#kali">Open the Kali lab</a></div>
+</div>
+<div class="term"><div class="bar"><i></i><i></i><i></i><span>insane@lab: ~</span></div><pre id="tt"></pre></div>
+</div>
+<div class="stats rv">
+<div class="stat"><b>4</b><span>Core disciplines</span></div>
+<div class="stat"><b>Silicon → Shell</b><span>Full-stack depth</span></div>
+<div class="stat"><b>Lab-first</b><span>Learn by doing</span></div>
+<div class="stat"><b>Ethical</b><span>Defense-minded</span></div>
+</div>
+
+<section id="cpu">
+<div class="eyebrow rv">01 · Hardware</div><h2 class="rv">CPU architecture, explained properly</h2>
+<p class="sub rv">Every program you run is a stream of instructions flowing through the same stages. Watch the pipeline in motion.</p>
+<div class="pipe rv"><div class="st">FETCH<small>read instr.</small></div><div class="st">DECODE<small>micro-ops</small></div><div class="st">EXECUTE<small>ALU / FPU</small></div><div class="st">MEMORY<small>load / store</small></div><div class="st">WRITE-BACK<small>registers</small></div></div>
+<div class="grid">
+<div class="card rv"><div class="ic">01</div><h3>Pipelining & superscalar</h3><p>Stages overlap so many instructions are in flight, and wide cores issue several per cycle across parallel units.</p></div>
+<div class="card rv"><div class="ic">02</div><h3>Out-of-order & speculation</h3><p>The CPU reorders work around stalls and predicts branches. Wrong guesses roll back, but can leave traces in caches, the root of Spectre.</p></div>
+<div class="card rv"><div class="ic">03</div><h3>Cache hierarchy</h3><p>L1 answers in about a nanosecond, RAM in around eighty. Locality of access often matters more than raw clock speed.</p></div>
+<div class="card rv"><div class="ic">04</div><h3>Virtual memory</h3><p>Page tables and the TLB translate addresses, giving every process isolation while the kernel keeps control.</p></div>
+<div class="card rv"><div class="ic">05</div><h3>Privilege rings</h3><p>User and kernel modes are enforced by hardware. System calls are the controlled doorway between them.</p></div>
+<div class="card rv"><div class="ic">06</div><h3>Multicore & SMT</h3><p>Cores, hyper-threads and coherence protocols share caches and buses, which is where races and side channels hide.</p></div>
+</div>
+<div class="tw rv"><table><tr><th></th><th>x86-64</th><th>ARM64</th><th>RISC-V</th></tr>
+<tr><td>Design</td><td>CISC, variable length</td><td>RISC, fixed 32-bit</td><td>RISC, open and modular</td></tr>
+<tr><td>General registers</td><td>16</td><td>31</td><td>32</td></tr>
+<tr><td>Typical use</td><td>PCs and servers</td><td>Phones, laptops, cloud</td><td>Embedded and research</td></tr></table></div>
+</section>
+
+<section id="code">
+<div class="eyebrow rv">02 · Software</div><h2 class="rv">Coding with depth, not just syntax</h2>
+<p class="sub rv">Pick a language and see what it teaches you about memory, safety and the machine underneath.</p>
+<div class="tabs rv" id="tabs"></div>
+<div class="code rv"><div class="bar"><i></i><i></i><i></i><span id="fn">main.py</span></div><pre id="snip"></pre></div>
+<div class="note rv" id="note"></div>
+<div class="grid" style="margin-top:20px">
+<div class="card rv"><div class="ic">{}</div><h3>Data structures</h3><p>Arrays, hash maps, trees, heaps and graphs, with Big-O and real cache behaviour.</p></div>
+<div class="card rv"><div class="ic">&amp;*</div><h3>Memory models</h3><p>Stack, heap, ownership and garbage collection explain most bugs and many vulnerabilities.</p></div>
+<div class="card rv"><div class="ic">||</div><h3>Concurrency</h3><p>Threads, locks, atomics and async. Race conditions are both correctness and security bugs.</p></div>
+</div>
+</section>
+
+<section id="kali">
+<div class="eyebrow rv">03 · Offensive toolkit</div><h2 class="rv">Kali Linux, used responsibly</h2>
+<p class="sub rv">Kali is a penetration-testing distribution. Use it only on systems you own or have written permission to test.</p>
+<div class="grid">
+<div class="card rv"><div class="ic">nm</div><h3>Nmap</h3><p>Network discovery plus service and version detection.</p></div>
+<div class="card rv"><div class="ic">ws</div><h3>Wireshark</h3><p>Packet capture and protocol analysis.</p></div>
+<div class="card rv"><div class="ic">bp</div><h3>Burp Suite</h3><p>Intercepting proxy for web application testing.</p></div>
+<div class="card rv"><div class="ic">ms</div><h3>Metasploit</h3><p>Framework for validating known flaws inside a lab.</p></div>
+<div class="card rv"><div class="ic">gh</div><h3>Ghidra</h3><p>Disassembly and reverse engineering.</p></div>
+<div class="card rv"><div class="ic">hc</div><h3>Hashcat / John</h3><p>Audit the strength of your own password policies.</p></div>
+</div>
+<div class="code rv" style="margin-top:20px"><div class="bar"><i></i><i></i><i></i><span>home-lab.sh</span></div><pre><span class="cm"># refresh the system</span>
+<span class="pr">$</span> sudo apt update &amp;&amp; sudo apt full-upgrade -y
+<span class="cm"># scan YOUR OWN lab VM on a host-only network</span>
+<span class="pr">$</span> nmap -sV -T3 192.168.56.101
+<span class="cm"># see what your machine is listening on</span>
+<span class="pr">$</span> sudo ss -tulpn</pre></div>
+<div class="note rv">Practise legally: run Kali plus a deliberately vulnerable target (Metasploitable, DVWA or Juice Shop) in VirtualBox on an isolated network, or use TryHackMe, Hack The Box and picoCTF.</div>
+</section>
+
+<section id="sec">
+<div class="eyebrow rv">04 · Defense</div><h2 class="rv">Cybersecurity fundamentals</h2>
+<p class="sub rv">Think like an attacker, build like a defender.</p>
+<div class="grid">
+<div class="card rv"><div class="ic">C·I·A</div><h3>The CIA triad</h3><p>Confidentiality, integrity and availability are the goals every control serves.</p></div>
+<div class="card rv"><div class="ic">W10</div><h3>OWASP Top 10</h3><p>Injection, broken access control, cryptographic failures and misconfiguration: the web baseline.</p></div>
+<div class="card rv"><div class="ic">MEM</div><h3>Memory safety</h3><p>Overflows and use-after-free come from CPU fundamentals. Fight them with ASLR, NX, canaries and Rust.</p></div>
+<div class="card rv"><div class="ic">KEY</div><h3>Cryptography</h3><p>Use vetted libraries: AES-GCM, ChaCha20, Ed25519 and Argon2. Never invent your own.</p></div>
+<div class="card rv"><div class="ic">DiD</div><h3>Defense in depth</h3><p>Least privilege, patching, MFA, segmentation, logging and monitoring.</p></div>
+<div class="card rv"><div class="ic">IR</div><h3>Incident response</h3><p>Prepare, detect, contain, eradicate, recover, learn. Logs are your memory.</p></div>
+</div>
+</section>
+
+<section id="net"><div class="eyebrow rv">05 · Networking</div><h2 class="rv">The OSI model, layer by layer</h2><p class="sub rv">Every attack and every defense lives at one of these seven layers.</p><div class="tl" id="osi"></div></section>
+<section id="hw"><div class="eyebrow rv">Reference · Hardware</div><h2 class="rv">Memory hierarchy and typical latency</h2><p class="sub rv">Approximate figures for modern desktop hardware. Exact numbers vary by model, but the ratios tell the story: every step down is slower and bigger.</p><div class="tw rv"><table><tr><th>Level</th><th>Typical size</th><th>Latency</th><th>Notes</th></tr><tr><td>Registers</td><td>~1 KB</td><td>under 1 ns</td><td>Inside the core</td></tr><tr><td>L1 cache</td><td>32–64 KB per core</td><td>~1 ns</td><td>Split instruction and data</td></tr><tr><td>L2 cache</td><td>256 KB–2 MB per core</td><td>~3–5 ns</td><td>Private to each core</td></tr><tr><td>L3 cache</td><td>8–96 MB</td><td>~10–20 ns</td><td>Shared between cores</td></tr><tr><td>DRAM</td><td>8–128 GB</td><td>~60–100 ns</td><td>DDR4 or DDR5</td></tr><tr><td>NVMe SSD</td><td>256 GB–4 TB</td><td>~20–100 µs</td><td>Persistent storage</td></tr><tr><td>HDD</td><td>1–20 TB</td><td>~5–10 ms</td><td>Mechanical seek time</td></tr></table></div></section>
+<section id="meth"><div class="eyebrow rv">Methodology</div><h2 class="rv">How an authorized security test works</h2><p class="sub rv">Professional penetration tests follow a repeatable process. Each phase also tells defenders what to watch for.</p><div class="tl" id="meth2"></div></section>
+<section id="cmd"><div class="eyebrow rv">Cheat sheet</div><h2 class="rv">Essential Linux and security commands</h2><p class="sub rv">Everyday commands for system admin, networking, crypto and debugging. Filter by typing.</p><input id="cq" class="srch" placeholder="Filter commands: network, log, hash..." aria-label="Filter commands"><div class="tw"><table><tr><th>Area</th><th>Command</th><th>What it does</th></tr><tbody id="cb"></tbody></table></div></section>
+<section id="kb"><div class="eyebrow rv">06 · Knowledge base</div><h2 class="rv">Search the core concepts</h2><p class="sub rv">Short, accurate definitions across CPU design, coding, Kali tools, security and networking.</p><input id="q" class="srch" placeholder="Search: cache, nmap, XSS, TLS..." aria-label="Search"><div class="tabs" id="cats"></div><div class="grid" id="kbg"></div></section>
+<section id="faq"><div class="eyebrow rv">07 · FAQ</div><h2 class="rv">Common questions</h2><div id="fq" style="margin-top:28px"></div></section>
+<section id="path">
+<div class="eyebrow rv">08 · Roadmap</div><h2 class="rv">Your learning path</h2>
+<p class="sub rv">Tap a stage to mark it complete.</p>
+<div class="tl" id="road"></div>
+<div class="final rv"><h2>Build real depth.</h2><p>Start with the fundamentals, practise in a safe lab, and keep going.</p><a class="btn p" href="#cpu">Back to the basics</a></div>
+</section>
+</div></main>
+<footer><div class="wrap fc"><div>© <span id="y"></span> Insane.Web. Learn. Build. Defend.</div><div><a href="#cpu">CPU</a><a href="#code">Coding</a><a href="#kali">Kali</a><a href="#sec">Security</a></div></div></footer>
+<script>
+var L={Python:["main.py",'<span class="cm"># is a port open on YOUR host?</span>\nimport socket\ns = socket.socket(); s.settimeout(1)\nprint(s.connect_ex(("127.0.0.1", 22)) == 0)',"Fast to prototype. Ideal for automation and security tooling."],
+C:["main.c",'#include &lt;stdio.h&gt;\nint main(void){\n  int a[4] = {1,2,3,4}, s = 0;\n  for (int i = 0; i &lt; 4; i++) s += a[i];\n  printf("%d\\n", s);  <span class="cm">// bounds are YOUR job</span>\n}',"Close to the metal. No bounds checks, which is why it teaches memory safety so well."],
+Rust:["main.rs",'fn main() {\n    let v = vec![1, 2, 3, 4];\n    let s: i32 = v.iter().sum();\n    println!("{}", s); <span class="cm">// ownership checked at compile time</span>\n}',"Memory safety without a garbage collector."],
+Bash:["log-stats.sh",'for f in /var/log/*.log; do\n  echo "$f: $(wc -l &lt; "$f") lines"\ndone',"The glue of Linux. Master pipes, grep, awk and sed."]};
+var t=document.getElementById('tabs'),sn=document.getElementById('snip'),nt=document.getElementById('note'),fn=document.getElementById('fn');
+function show(k){sn.innerHTML=L[k][1];fn.textContent=L[k][0];nt.textContent=L[k][2];[].forEach.call(t.children,function(b){b.className='tab'+(b.textContent==k?' on':'')})}
+Object.keys(L).forEach(function(k){var b=document.createElement('button');b.textContent=k;b.onclick=function(){show(k)};t.appendChild(b)});show('Python');
+var R=[["Linux & networking","Shell, TCP/IP, DNS, HTTP"],["Python + C","Automation and low-level control"],["CPU & assembly","Registers, stack, calling conventions"],["Web security","OWASP Top 10 in a safe lab"],["Kali lab & CTFs","Recon, analysis, writeups"],["Reverse engineering","Ghidra and debugging"],["Certifications","Security+, then OSCP"]],r=document.getElementById('road');
+R.forEach(function(x,i){var b=document.createElement('button');b.className='step';b.innerHTML='<span class="n">'+(i+1)+'</span><span>'+x[0]+'<small>'+x[1]+'</small></span>';b.onclick=function(){b.classList.toggle('on')};r.appendChild(b)});
+var O=[[7,'Application','HTTP, DNS, SSH','web flaws, phishing','WAF, input validation'],[6,'Presentation','TLS, encodings','weak ciphers','TLS 1.3, strong suites'],[5,'Session','cookies, tokens','session hijacking','Secure and HttpOnly cookies'],[4,'Transport','TCP, UDP, ports','SYN floods, port scans','firewalls, rate limits'],[3,'Network','IP, routing, ICMP','address spoofing','ACLs, ingress filtering'],[2,'Data link','Ethernet, Wi-Fi, ARP','ARP spoofing','WPA3, port security'],[1,'Physical','cables, radio','tapping, jamming','physical access control']],od=document.getElementById('osi');
+O.forEach(function(o){var d=document.createElement('div');d.className='step rv';d.style.cursor='default';d.innerHTML='<span class="n">'+o[0]+'</span><span>'+o[1]+'<small>'+o[2]+'</small><small>Risk: '+o[3]+' · Defense: '+o[4]+'</small></span>';od.appendChild(d)});
+var K=['CPU|Pipeline|Overlaps fetch, decode and execute so many instructions are in flight at once.','CPU|Branch prediction|Guesses which way a branch goes so the pipeline never stalls waiting.','CPU|TLB|A small cache of virtual-to-physical address translations.','CPU|Cache line|The 64-byte block moved between RAM and cache. Contiguous data is fast.','CPU|Registers|The fastest storage, inside the core, holding values being worked on.','CPU|Interrupt|A signal that diverts the CPU to a handler, such as a keypress or timer.','CPU|SIMD|One instruction applied to many data lanes at once (SSE, AVX, NEON).','CPU|Spectre and Meltdown|Speculative-execution side channels, mitigated by microcode and OS patches.','Code|Big-O|Describes how running time or memory grows as input grows.','Code|Stack frame|The memory block holding a function call’s locals and return address.','Code|Pointer|A variable holding a memory address. Misuse causes crashes and exploits.','Code|Hash map|Key-value store with near constant-time lookups on average.','Code|Garbage collection|Automatic memory reclaiming, trading some speed for safety.','Code|Race condition|Outcome depends on timing between threads. A classic bug and security hole.','Code|Unit testing|Small automated checks that catch regressions early.','Code|Version control|Git tracks history so you can branch, review and roll back safely.','Kali|Nmap|Discovers hosts, open ports and service versions on networks you are allowed to scan.','Kali|tcpdump|Command-line packet capture for quick traffic inspection.','Kali|Wireshark|Graphical packet analyzer with deep protocol decoding.','Kali|Burp Suite|Proxy that lets you inspect and modify web traffic during authorized tests.','Kali|Ghidra|Open-source reverse-engineering suite with a decompiler.','Kali|Hashcat|Password recovery tool, useful for auditing your own hash policies.','Security|XSS|Injecting script into pages other users view. Prevent with output encoding and CSP.','Security|SQL injection|Untrusted input altering a database query. Prevent with parameterized queries.','Security|CSRF|Tricking a browser into sending an unwanted authenticated request. Use tokens and SameSite.','Security|Zero trust|Never trust by network location. Verify every request, user and device.','Security|MFA|A second proof of identity makes stolen passwords far less useful.','Security|Hashing vs encryption|Hashes are one-way. Encryption is reversible with a key.','Security|Least privilege|Give each account and process only the access it needs.','Security|Threat modeling|Map assets, attackers and paths before building controls.','Network|DNS|Translates names to IP addresses. Often abused, so monitor it.','Network|TLS|Encrypts and authenticates traffic between client and server.','Network|NAT|Lets many private hosts share a public IP address.','Network|VPN|An encrypted tunnel between your device and a network.','Network|Firewall|Filters traffic by rules on address, port and state.','Network|DHCP|Automatically assigns IP settings to devices joining a network.','CPU|Out-of-order execution|Runs instructions as their inputs are ready rather than in program order, then retires them in order.','CPU|SMT (hyper-threading)|Two hardware threads share one core to keep its units busy during stalls.','CPU|Cache coherence|Protocols such as MESI keep each core’s cached copy of memory consistent.','CPU|Page table|The OS structure that maps virtual pages to physical frames and permissions.','CPU|IPC vs clock speed|Performance is instructions per cycle times cycles per second. Both matter.','CPU|Microcode|Low-level firmware inside the CPU that implements complex instructions and receives fixes.','CPU|Endianness|Byte order in memory. x86 and most ARM systems are little-endian.','CPU|NUMA|On multi-socket systems, memory attached to another CPU is slower to reach.','Code|Compiler vs interpreter|Compilers translate ahead of time. Interpreters execute source or bytecode as they go.','Code|Static vs dynamic typing|Static types catch errors before running. Dynamic types check at runtime.','Code|REST API|Stateless HTTP interface where URLs name resources and verbs act on them.','Code|Docker container|Packages an app with its dependencies, isolated from the host by the kernel.','Code|CI/CD|Automatic build, test and deploy pipelines triggered by each commit.','Code|Regular expression|A compact pattern language for matching and extracting text.','Code|Sorting algorithms|Quicksort and mergesort average O(n log n). Know their trade-offs.','Kali|Aircrack-ng|Suite for auditing the security of Wi-Fi networks you own.','Kali|Nikto|Scans web servers for outdated software and risky configurations.','Kali|Gobuster|Finds hidden paths on web servers during authorized assessments.','Kali|Netcat|The “TCP/IP Swiss army knife” for testing ports and moving data.','Kali|sqlmap|Automates detection of SQL injection on targets you are authorized to test.','Kali|theHarvester|Gathers public emails and subdomains for OSINT reconnaissance.','Kali|Autopsy|Digital forensics platform for analyzing disk images.','Kali|Volatility|Memory forensics framework for analyzing RAM dumps.','Security|ASLR|Randomizes memory layout so attackers cannot rely on fixed addresses.','Security|DEP / NX|Marks data memory as non-executable to block injected code.','Security|Stack canary|A guard value that detects stack buffer overflows before a function returns.','Security|Phishing|Deceptive messages that steal credentials. Defend with training, MFA and filtering.','Security|Ransomware|Malware that encrypts files for payment. Defend with offline backups and patching.','Security|SIEM|Collects and correlates logs to detect suspicious activity.','Security|EDR|Endpoint agents that detect and contain threats on devices.','Security|CVE and CVSS|CVE names a vulnerability. CVSS scores its severity from 0 to 10.','Security|Salting|Random data added before hashing so identical passwords differ.','Security|Public-key cryptography|A key pair: one public to encrypt or verify, one private to decrypt or sign.','Security|Supply-chain attack|Compromising a dependency or vendor to reach many victims.','Network|ARP|Maps IP addresses to MAC addresses on a local network.','Network|ICMP|Control messages such as ping and unreachable errors.','Network|BGP|The routing protocol that glues internet providers together.','Network|CIDR notation|Writes address ranges as prefix lengths, like 192.168.1.0/24.','Network|IDS and IPS|Systems that detect, and optionally block, malicious traffic.','Network|Load balancer|Spreads requests across servers for capacity and resilience.','Network|Reverse proxy|A front server that shields and accelerates back-end services.'],cat='All',kg=document.getElementById('kbg'),q=document.getElementById('q'),cs=document.getElementById('cats');
+function rk(){var v=q.value.toLowerCase();kg.innerHTML='';K.forEach(function(s){var p=s.split('|');if((cat=='All'||p[0]==cat)&&(p[1]+' '+p[2]).toLowerCase().indexOf(v)>-1){var d=document.createElement('div');d.className='card';d.innerHTML='<span class="tag">'+p[0]+'</span><h3>'+p[1]+'</h3><p>'+p[2]+'</p>';kg.appendChild(d)}});if(!kg.children.length)kg.innerHTML='<p class="sub">No matches found.</p>'}
+['All','CPU','Code','Kali','Security','Network'].forEach(function(c){var b=document.createElement('button');b.className='tab'+(c=='All'?' on':'');b.textContent=c;b.onclick=function(){cat=c;[].forEach.call(cs.children,function(x){x.className='tab'+(x==b?' on':'')});rk()};cs.appendChild(b)});q.oninput=rk;rk();
+var F=[['Is Kali Linux legal?','Yes. It is a free, legitimate distribution. Legality depends on how you use it: only test systems you own or have written permission to test.'],['Do I need CPU knowledge for security?','It helps a lot. Memory corruption, side channels and reverse engineering all rest on how the CPU, stack and caches work.'],['Which language should I learn first?','Start with Python for fast results, add C to understand memory, then Rust for safe systems programming.'],['How can I practise safely?','Use isolated virtual machines with deliberately vulnerable targets, or join platforms like TryHackMe, Hack The Box and picoCTF.'],['Which certifications are worth it?','Security+ for fundamentals, then options like eJPT, OSCP or CISSP depending on whether you lean offensive or defensive.'],['How long does it take to learn?','Expect a few months for solid fundamentals and one to two years of regular practice to feel confident. Consistency beats cramming.'],['Do I need expensive hardware?','No. A laptop with 8 to 16 GB of RAM can run Kali and a vulnerable target in virtual machines.'],['Should I use Windows or Linux?','Both are useful. Linux is ideal for tooling and servers, while Windows knowledge matters because most enterprises run it.'],['What is the difference between a pentest and a red team?','A pentest finds as many weaknesses as possible in scope. A red team simulates a stealthy real adversary to test detection and response.']],fq=document.getElementById('fq');
+F.forEach(function(f){var d=document.createElement('details');d.className='rv';d.innerHTML='<summary>'+f[0]+'</summary><p>'+f[1]+'</p>';fq.appendChild(d)});
+var M=[['Scope and authorization','Agree targets, rules and written permission first. This is what makes testing legal. Defenders: know your asset inventory.'],['Reconnaissance','Collect public information about the target. Defenders: limit what you expose.'],['Scanning and enumeration','Identify live hosts, open ports and services. Defenders: alert on unusual scan patterns.'],['Vulnerability analysis','Match services to known weaknesses and misconfigurations. Defenders: patch and harden on a schedule.'],['Controlled exploitation','Safely demonstrate impact within scope. Defenders: segmentation and least privilege limit the blast radius.'],['Post-exploitation and cleanup','Assess reach, then remove every artifact left behind. Defenders: centralized logging reveals movement.'],['Reporting and remediation','Document findings, risk and fixes, then retest. This is the real deliverable.']],md=document.getElementById('meth2');
+M.forEach(function(m,i){var d=document.createElement('div');d.className='step rv';d.style.cursor='default';d.innerHTML='<span class="n">'+(i+1)+'</span><span>'+m[0]+'<small>'+m[1]+'</small></span>';md.appendChild(d)});
+var C=['System::ls -la /etc::List files with permissions and owners','System::chmod 600 key.pem::Restrict a file to owner read and write','System::find / -name "*.conf" 2>/dev/null::Locate files by name','System::grep -ri "error" /var/log::Search text recursively and case-insensitively','System::ps aux::List all running processes','System::systemctl status ssh::Check whether a service is running','System::journalctl -u ssh --since today::Read a service’s logs','System::lscpu::Show CPU model, cores and cache sizes','System::free -h::Show memory usage in readable units','System::df -h::Show disk usage per filesystem','System::lsblk::List disks and partitions','Network::ip a::Show network interfaces and addresses','Network::ss -tulpn::List listening ports and owning processes','Network::ping -c 4 example.com::Test reachability','Network::traceroute example.com::Show the route packets take','Network::dig example.com A::Query DNS records','Network::curl -I https://example.com::Fetch only the HTTP response headers','Network::nmap -sV 192.168.56.101::Detect services on your own lab host','Network::sudo tcpdump -i eth0 port 53::Capture DNS traffic on an interface','Network::sudo ufw status verbose::Show firewall rules','Crypto::sha256sum file.iso::Compute a file hash to verify integrity','Crypto::gpg --verify file.sig file::Verify a signed download','Crypto::ssh-keygen -t ed25519::Generate a modern SSH key pair','Crypto::openssl s_client -connect example.com:443::Inspect a server’s TLS certificate','Hardening::sudo lynis audit system::Run a local security hardening audit','Hardening::sudo fail2ban-client status::See which jails are banning abusive IPs','Debug::gdb ./a.out::Debug a program step by step','Debug::objdump -d ./a.out::Disassemble a binary to read its assembly','Debug::git log --oneline --graph::Show commit history compactly','Debug::python3 -m venv .venv::Create an isolated Python environment'],cb=document.getElementById('cb'),cq=document.getElementById('cq');
+function rc(){var v=cq.value.toLowerCase(),h='';C.forEach(function(s){var p=s.split('::');if(s.toLowerCase().indexOf(v)>-1)h+='<tr><td>'+p[0]+'</td><td><code>'+p[1].replace(/&/g,'&amp;').replace(/</g,'&lt;')+'</code></td><td>'+p[2]+'</td></tr>'});cb.innerHTML=h||'<tr><td colspan="3">No matches.</td></tr>'}cq.oninput=rc;rc();
+document.getElementById('y').textContent=new Date().getFullYear();
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.08});
+[].forEach.call(document.querySelectorAll('.rv'),function(e){io.observe(e)});
+var rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+var lines=['<span class="pr">$</span> whoami','insane','<span class="pr">$</span> lscpu | grep -E "Model|Cache"','Model name:  x86-64 · 8 cores','L1d / L2 / L3:  32K / 1M / 32M','<span class="pr">$</span> nmap -sV 192.168.56.101','<span class="cm"># your own lab target</span>','22/tcp open ssh · 80/tcp open http','<span class="pr">$</span> <span class="cm">learning, building, defending_</span>'],tt=document.getElementById('tt'),li=0;
+function step(){if(li>=lines.length)return;tt.innerHTML+=(li?'\n':'')+lines[li++];setTimeout(step,rm?0:620)}step();
+(function(){var c=document.getElementById('rain'),x=c.getContext('2d'),cols,d,fs=16,ch='01<>{}/;$#'.split('');
+function sz(){c.width=innerWidth;c.height=innerHeight;cols=Math.ceil(c.width/fs);d=[];for(var i=0;i<cols;i++)d[i]=Math.random()*-50}sz();addEventListener('resize',sz);
+if(rm)return;setInterval(function(){x.fillStyle='rgba(5,8,11,.12)';x.fillRect(0,0,c.width,c.height);x.fillStyle='#19f0a0';x.font=fs+'px monospace';for(var i=0;i<cols;i++){x.fillText(ch[Math.random()*ch.length|0],i*fs,d[i]*fs);if(d[i]*fs>c.height&&Math.random()>.975)d[i]=0;d[i]++}},70)})();
+</script>
+</body>
+</html>
